@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title id="title"></title>
+$(if refresh-timeout)
+<meta http-equiv="refresh" content="$(refresh-timeout-secs)">
+$(endif)
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="theme-color" content="#3B5998" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"/>
+<link rel="stylesheet" href="style.css">
+<script language="JavaScript">
+
+$(if advert-pending == 'yes')
+    var popup = '';
+    function focusAdvert() {
+	if (window.focus) popup.focus();
+    }
+    function openAdvert() {
+	popup = open('$(link-advert)', 'hotspot_advert', '');
+	setTimeout("focusAdvert()", 1000);
+    }
+$(endif)
+    function openLogout() {
+	if (window.name != 'hotspot_status') return true;
+        open('$(link-logout)', 'hotspot_logout', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=280,height=250');
+	window.close();
+	return false;
+    }
+
+</script>
+</head>
+<body $(if advert-pending == 'yes')	onLoad="openAdvert()" $(endif) >
+    <div class="img "><img src="img/logo.png" width="200" alt=""></div>
+            <br>
+<div class="main">
+<form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
+
+$(if login-by == 'trial')
+	<div style="margin-top:20px; text-align: center;"><img src="img/wellcome.jpg" width="299"> <h3>trial user</h3></div>
+$(elif login-by != 'mac')
+	<div style="margin-top:20px; text-align: center;"><img src="img/wellcome.jpg" width="299"> <h3 id="user">------ $(username) ------</h3></div>
+$(endif)
+<h2>Selamat Datang</h2>
+<p><b>Terima kasih telah menggunakan<br> <font color="red" >Layanan Internet Hotspot </font>Kami<br>Silahkan cek status voucher anda dibawah :</b></p>
+
+<div class="grid-container">
+<div>Upload<br><img src="img/upload.png" width="30"><br>$(bytes-in-nice)</div>
+<div>Mac Address<br><img src="img/id.png" width="30"><br>$(mac)</div>
+<div>IP<br><img src="img/ip.png" width="30"><br>$(ip)</div>
+<div>Download<br><img src="img/down.png" width="30"><br>$(bytes-out-nice)</div>  
+<div>Terkoneksi<br><img src="img/internet-connection.png" width="30"><br>$(uptime)</div>
+<div>Sisa Waktu<br><img src="img/sand-clock.png" width="30"><br>$(session-time-left)</div>
+<div>Refresh <br><img src="img/refresh.png" width="30"><br> $(refresh-timeout)</div>
+<div>Sisa Kuota <br><img src="img/kuota.png" width="30"><br>$(remain-bytes-total-nice)</div>
+<div>Expired <br><img src="img/heart.png" width="30"><br><iframe id="exp" frameborder="0" scrolling="no" src="about:blank"></iframe></div>
+</div>
+
+<p>Klik logut untuk berhenti terhubung ke jaringan</p>
+$(if login-by-mac != 'yes')
+
+<!-- user manager link. if user manager resides on other router, replace $(hostname) by its address
+<button onclick="document.location='http://$(hostname)/user?subs='; return false;">status</button>
+<!-- end of user manager link -->
+<button class="button" type="submit"><i class="icon icon-logout">&#xe804;</i> Logout</button>
+$(endif)
+</form>
+</div>
+
+<script type="text/javascript">
+    document.getElementById('title').innerHTML = window.location.hostname + " > status";
+//get vaidity
+    var usr = document.getElementById('user').innerHTML
+    var url = "https://example.com/status/status.php?name="; // http://ip-server-mikhmon/mikhmonv2/status/status.php?name=
+    var SessionName = "wifijoss"
+    var getvalid = url+usr+"&session="+SessionName
+    document.getElementById('exp').src = getvalid;
+        
+</script>
+<br><br><br>
+</body>
+</html>

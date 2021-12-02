@@ -1,0 +1,4 @@
+User-agent: *
+allow: /
+allow: /V1/
+disallow: /index.html

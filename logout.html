@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title id="title"></title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="theme-color" content="#3B5998" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"/>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<script language="JavaScript">
+
+    function openLogin() {
+	if (window.name != 'hotspot_logout') return true;
+	open('$(link-login)', '_blank', '');
+	window.close();
+	return false;
+    }
+
+</script>
+<div class="img "><img src="img/logo.png" width="200" alt=""></div><br>
+<div class="main">
+<div class="box">
+    <div style="margin-top:30px; text-align: center;"><img src="img/man.png" width="100"> <h3 id="user">$(username)</h3>
+    </div>
+</div>
+<p><b>Terima kasih telah menggunakan<br> <font color="red" >Layanan Internet Hotspot </font>Kami<br>Anda telah keluar dari jaringan hotspot</b></p>
+
+<div class="grid-container">
+<div>Upload<br><img src="img/upload.png" width="30"><br>$(bytes-in-nice)</div>
+<div>Mac Address<br><img src="img/id.png" width="30"><br>$(mac)</div>
+<div>IP<br><img src="img/ip.png" width="30"><br>$(ip)</div>
+<div>Download<br><img src="img/down.png" width="30"><br>$(bytes-out-nice)</div>  
+<div>Terkoneksi<br><img src="img/internet-connection.png" width="30"><br>$(uptime)</div>
+<div>Sisa Waktu<br><img src="img/sand-clock.png" width="30"><br>$(session-time-left)</div>
+<div>Refresh <br><img src="img/refresh.png" width="30"><br> $(refresh-timeout)</div>
+<div>Sisa Kuota <br><img src="img/kuota.png" width="30"><br>$(remain-bytes-total-nice)</div>
+<div>Expired <br><img src="img/heart.png" width="30"><br><iframe id="exp" frameborder="0" scrolling="no" src="about:blank"></iframe></div>
+</div>
+
+<p>Klik <font color="red" >Login Kembali</font> untuk terhubung ke jaringan</p>
+<form action="$(link-login)" name="login" onSubmit="return openLogin()">
+        <button class="button" type="submit"><i class="icon icon-login">&#xe803;</i> Login Kembali</button>
+</form>
+</div>
+<br><br><br>
+<script type="text/javascript">
+	document.getElementById('title').innerHTML = window.location.hostname + " > logout";
+</script>
+</body>
+</html>

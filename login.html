@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title id="title"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="theme-color" content="#3B5998" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+        <form name="sendin" action="$(link-login-only)" method="post">
+            <input type="hidden" name="username" />
+            <input type="hidden" name="password" />
+            <input type="hidden" name="dst" value="$(link-orig)" />
+            <input type="hidden" name="popup" value="true" />
+        </form>
+
+        <script type="text/javascript" src="md5.js"></script>
+        <script type="text/javascript">
+            function doLogin() {
+                document.sendin.username.value = document.login.username.value;
+                document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value +
+                    '$(chap-challenge)');
+                document.sendin.submit();
+                return false;
+            }
+        </script>
+        </div>
+            <div class="img "><img src="img/logoku.png" width="250" alt="THCA BOT"></div>
+            <br>
+            <div id="main" class="main">
+                <header >
+                    <img class="gbhead" src="img/header.jpg" width="299">
+                </header>
+            <marquee direction="left" class="jalan">Selamat datang di Rest Api Key kami,nikmati layanan Api Key sepuasnya, Unlimited tanpa batasan kuota dengan harga terjangkau dimana pun dan kapanpun</marquee>
+            <div class="box">
+                <button id="btnvrc" class="small-button" onclick="voucher();"><i class="icon icon-ticket">&#xe801;</i>Tools</button>
+                <button id="signup" class="small-button" onclick="window.location='https://luxurywatch.co.nz/donasi';"> <i class="icon icon-telegram">&#xe807;</i> Daftar</button>
+            </div>
+            <div class="box" id="infologin">
+            </div>
+            <form autocomplete="off" name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()"
+                $(endif)>
+                <input type="hidden" name="dst" value="$(link-orig)" />
+                <input type="hidden" name="popup" value="true" />
+                <input class="username" name="username" placeholder="INPUT" type="text" value="" />
+                <input class="password" name="password" placeholder="Password" type="hidden" />
+
+                <button class="button" type="submit"><i class="icon icon-login">&#xe803;</i>AKTIFKAN SEKARANG JUGA</button>
+
+            </form>
+            <div style="color:#000;">
+                <i>Copyright &copy; 2021 THCA BOT</i><br />
+                <i>Powered by <a style="color:#000; text-decoration:underline;" href="https://ahmadchen.github.io">Ahmad Chen Dev</a></i>
+                <!-- Tolong jangan dihilangkan bagian ini-->
+            </div>
+        </div>
+        <br>
+        
+        
+        <div>
+            <ul>
+                <li><a class="active" href="login.html"><img src="img/house.png" width="30"></a></li>
+                <li><a href="paket.html"><img src="img/money.png" width="30" alt="Harga Paket"></a></li>
+                <li><a href="contact.html"><img src="img/contacts.png" width="30"></a></li>
+                <li><a href="faq.html"><img src="img/faq.png" width="30"></a></li>
+                <li><a href="about.html"><img src="img/call-center.png" width="30"></a></li>
+            </ul>
+        </div>
+
+<script type="text/javascript">
+var hostname = window.location.hostname;
+document.getElementById('title').innerHTML = hostname  + " > login";
+
+document.login.username.focus();
+
+var infologin = document.getElementById('infologin');
+infologin.innerHTML = "THCA TOOLS V5 UI Modern";
+
+// login page bang
+var username = document.login.username;
+var password = document.login.password;
+
+username.placeholder = "Isi Api Key";
+
+// set password = username
+function setpass() {
+    var user = username.value
+    //user = user.toLowerCase();
+    username.value = user;
+    password.value = user;
+}
+
+username.onkeyup = setpass;
+
+// change to voucher mode
+function voucher() {
+    username.focus();
+    username.onkeyup = setpass;
+    username.placeholder = "Api Key Mu";
+    username.style = "border-radius:none;"
+    password.type = "hidden";
+    infologin.innerHTML = "THCA TOOLS.";
+}
+
+// change to member mode
+function member() {
+    username.focus();
+    username.onkeyup = "";
+    username.placeholder = "Username";
+    username.style = "border-radius:3px 3px 0px 0px;"
+    password.type = "password";
+    infologin.innerHTML = "Masukkan Username dan Password akunmu..";
+}
+</script>
+</body>
+
+</html>
